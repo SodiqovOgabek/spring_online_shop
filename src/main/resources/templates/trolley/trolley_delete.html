@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<form method="post" >
+
+  <div class="offset-2">
+    <div class="col-md-8">
+      <div class="card-body">
+        <ul class="list-group">
+
+          <li class="list-group-item">name : <i  th:text="${trolley.get().product.name}"></i></li>
+          <li class="list-group-item">type : <span th:text="${trolley.get().product.type}"></span></li>
+          <li class="list-group-item">the number : <span th:text="${trolley.get().getTheNumber()}"></span></li>
+          <input type="number" name="theNumber"  value="1" th:max="${trolley.get().theNumber}" min="1">
+        </ul>
+        <h2>Are you sure delete this product</h2>
+
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a href="/trolley" class="btn btn-success">Go Back</a>
+      </div>
+    </div>
+  </div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+
+<div class="row">
+    <div class="offset-2 col-md-8">
+        <form method="post">
+
+            <div class="form-group">
+                <input type="hidden" name="id" class="form-control" th:text="${product.get().getId()}"/>
+            </div>
+
+            <div class="form-group">
+                <label>Product name</label>
+                <input type="text" name="name" class="form-control" th:value="${product.get().getName()}">
+            </div>
+
+            <div class="form-group">
+                <label>Price</label>
+                <input type="text" name="price" class="form-control" th:value="${product.get().getPrice()}"
+                >
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Genre</label>
+                <select class="form-control" name="gender" id="genre">
+                    <th:block th:each="genre : ${genders}">
+                        <option th:value="${product.get().getGender()}" th:text="${genre.getKey()}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Currency</label>
+                <select class="form-control" name="currency" id="currency">
+                    <th:block th:each="currency : ${currency}">
+                        <option th:value="${product.get().getCurrency()}" th:text="${currency.getKey()}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+
+            <div class="form-group mb-3">
+                <label>Product Types</label>
+                <select class="form-control" name="type" id="productType">
+                    <th:block th:each="productType : ${productTypes}">
+                        <option th:value="${product.get().type}" th:text="${productType.getKey()}"></option>
+                    </th:block>
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label>Cover</label>
+                <input type="file" name="cover" class="form-control" th:value="${product.get().getCover()}"/>
+            </div>
+
+            <a th:href="@{/admin}" class="btn btn-success">Go Back</a>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+
+    </div>
+
+</div>
+</body>
+</html>

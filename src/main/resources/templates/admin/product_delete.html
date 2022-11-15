@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<form method="post" th:href="@{'/product/delete/' + ${product.get().id}}" >
+
+<div class="offset-2">
+    <div class="col-md-8">
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">id : <span th:text="${product.get().id}"></span></li>
+                <li class="list-group-item">name : <i th:text="${product.get().name}"></i></li>
+                <li class="list-group-item">currency : <span th:text="${product.get().currency}"></span></li>
+            </ul>
+            <h2>Are you sure delete this book</h2>
+
+                <button type="submit" class="btn btn-danger">Yes</button>
+                <a href="/admin" class="btn btn-success">Go Back</a>
+        </div>
+    </div>
+</div>
+</form>
+
+</body>
+</html>

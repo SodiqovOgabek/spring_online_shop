@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .error {
+        font-size: 10px;
+        color: red;
+        margin: 1px;
+        padding: 1px;
+    }
+    body {
+        widtH: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*background: url('https://wallpaperaccess.com/full/1496376.jpg');*/
+
+    }
+
+    body, input, textarea, button {
+        /*font-family: "Raleway", sans-serif;*/
+    }
+
+    .center {
+        widtH: 100%;
+        max-width: 940px;
+        /*padding: 20px;*/
+    }
+
+    .signUp {
+        display: flex;
+        widtH: 100%;
+        transition: 0.5s ease-in-out;
+        border-radius: 5px;
+    }
+
+    .signUp.close {
+        transform: translate(-25%, 0);
+    }
+
+    .signUp .left, .signUp .right {
+        width: 60%;
+        padding: 80px 20px;
+    }
+
+    @media (max-width: 640px) {
+        .signUp .left, .signUp .right {
+            width: 100%;
+        }
+    }
+
+    .signUp .left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2;
+        text-align: center;
+        background-image: url("https://wallpaperaccess.com/full/1496376.jpg");
+        /*background-repeat: none;*/
+        background-size: cover;
+        background-position: center;
+        color: white;
+        transform-origin: center right;
+        position: relative;
+        transform-style: preserve-3d;
+        perspective: 10px;
+        overflow: hidden;
+    }
+
+    .signUp .left .back {
+        position: absolute;
+        top: -1%;
+        left: -1%;
+        width: 100%;
+        height: 115%;
+        background-image: url("https://wallpaperaccess.com/full/1496376.jpg");
+        /*background-repeat: none;*/
+        background-size: cover;
+        background-position: center;
+        /*transform: rotateY(180);*/
+        z-index: -1;
+    }
+
+    .signUp .left.close {
+        transform: rotateY(-180deg);
+        transition: 1s ease-in-out;
+    }
+
+    .signUp .left.close .back {
+        transform: rotateY(0);
+        transition: 1s ease-in-out;
+    }
+
+    .signUp .right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        box-shadow: 8px 10px 30px rgb(0 0 0);
+    }
+
+    .signUp .right form {
+        width: 100%;
+    }
+
+    .signUp .right input[type=text],
+    .signUp .right input[type=email],
+    .signUp .right input[type=password] {
+        width: 100%;
+        display: block;
+        margin: 10px 0;
+        padding: 10px 0px;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .signUp .right input[type=text].first,
+    .signUp .right input[type=email].first,
+    .signUp .right input[type=password].first {
+        margin-top: 0;
+    }
+
+    .signUp .right input[type=submit] {
+        padding: 10px 40px;
+        border: 2px solid #008c9e;
+        background: white;
+        color: #008c9e;
+        transition: 0.15s ease-in-out;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    .signUp .right input[type=submit]:hover {
+        background: #008c9e;
+        color: white;
+    }
+
+    .signUp .right .input-bordered {
+        width: 100%;
+        position: relative;
+    }
+
+    .signUp .right .input-bordered.active label {
+        top: 0;
+        left: 0;
+        transform: translate(0, -50%) scale(0.75);
+        color: #008c9e;
+    }
+
+    .signUp .right .input-bordered.active:after {
+        width: 100%;
+    }
+
+    .signUp .right .input-bordered:after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 1px;
+        background: #008c9e;
+        position: absolute;
+        bottom: 0;
+        transition: 0.15s ease-in-out;
+    }
+
+    .signUp .right .input-bordered label {
+        color: #444;
+        font-size: 15px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        transition: 0.15s ease-in-out;
+        cursor: text;
+        transform-origin: center left;
+    }
+</style>
+<body>
+<div class='center'>
+    <form method="post" th:action="@{/auth/login}">
+        <div class='signUp'>
+            <div class='left'>
+                <div class='back'></div>
+            </div>
+            <div class='right'>
+                <div class='input-bordered'>
+                    <div class='field'>
+                        <div class="form-group">
+<!--                            <label for="username">Username</label>-->
+                            <input type="text" class="form-control" id="username" name="username"  placeholder="Username">
+                        </div>
+
+                        <div class='field'>
+                            <div class="form-group">
+<!--                                <label for="password">Password</label>-->
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                            </div>
+
+                        </div>
+
+                        <br>
+
+                        <div class='field'>
+                            <input type='submit' value='Sign Up'/>
+                        </div>
+                        <br>
+                        <br>
+
+                        <p>
+                            Don't have an account?
+                            <a href="/auth/register" class="text-reset">Register here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+    </form>
+</div>
+</body>
+
+</html>

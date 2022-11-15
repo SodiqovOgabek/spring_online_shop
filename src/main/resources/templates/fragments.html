@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+
+    *,
+    *::after,
+    *::before {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: inherit;
+        box-sizing: inherit;
+    }
+
+    body {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        font-family: "Karla", sans-serif;
+        line-height: 1.7;
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    header {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 20px 14px;
+    }
+
+    header img {
+        height: 15px;
+    }
+
+    header ul {
+        margin-left: auto;
+    }
+
+    header ul a {
+        color: white;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 10px;
+        letter-spacing: 1px;
+        display: inline-block;
+        margin-left: 10px;
+    }
+
+    .container {
+        margin-top: 20px;
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .container .left img {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .container .right {
+        padding: 0 10px;
+        margin-top: -100px;
+    }
+
+    .container .right h1 {
+        color: white;
+        font-size: 124px;
+        font-weight: 900;
+        display: inline-block;
+        font-family: serif;
+        line-height: 1;
+    }
+
+    .container .right span {
+        font-size: 72px;
+        letter-spacing: -4px;
+        color: #232323;
+    }
+
+    .container .right p {
+        margin-top: 40px;
+        max-width: 600px;
+        color: white;
+        opacity: 0.5;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .container .right a {
+        text-decoration: none;
+        color: white;
+        display: inline-block;
+        margin-top: 40px;
+        opacity: 0.5;
+        border: 1px solid gray;
+        padding: 5px 12px 6px 12px;
+        border-radius: 5px;
+    }
+
+    .cover-2 {
+        background-color: #0f0f0f;
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .cover-3 {
+        background-color: #111111;
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .cover-4 {
+        background-color: #131313;
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .cover-5 {
+        background: -webkit-gradient(
+                linear,
+                left top,
+                left bottom,
+                from(#1d1d1d),
+                to(black)
+        );
+        background: linear-gradient(to bottom, #1d1d1d, black);
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    article {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        max-width: 80%;
+    }
+
+    .cover {
+        background-color: black;
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .cover-heading {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    .cover-heading h1 {
+        color: white;
+        font-size: 52px;
+        font-weight: 900;
+        display: inline-block;
+        font-family: "Roboto", sans-serif;
+    }
+
+    .cover-heading span {
+        color: white;
+        font-size: 52px;
+        font-weight: 900;
+        display: inline-block;
+        font-family: "Roboto", sans-serif;
+    }
+
+    .imsrk2 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        color: black;
+        font-size: 72px;
+        font-weight: 900;
+        z-index: -1;
+        color: #2d2d2d;
+        font-family: "Roboto", sans-serif;
+        letter-spacing: -4px;
+        line-height: 1;
+    }
+
+    @media (min-width: 1024px) {
+        .cover-heading h1 {
+            font-size: 72px;
+        }
+
+        .cover-heading span {
+            font-size: 72px;
+        }
+
+        .imsrk2 {
+            font-size: 124px;
+        }
+
+        header {
+            padding: 50px 80px;
+        }
+
+        header ul {
+            margin-left: auto;
+        }
+
+        header ul a {
+            font-size: 14px;
+            margin-left: 50px;
+        }
+
+        .container {
+            margin-top: 100px;
+            display: -ms-grid;
+            display: grid;
+            -ms-grid-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .container .left img {
+            width: auto;
+            height: 600px;
+            border-radius: 5px;
+        }
+
+        .container .right {
+            padding: 0;
+            margin-top: -80px;
+        }
+
+        .container .right h1 {
+            color: white;
+            font-size: 124px;
+            font-weight: 900;
+            display: inline-block;
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .container .right span {
+            font-size: 72px;
+            letter-spacing: -4px;
+            color: #232323;
+        }
+
+        .container .right p {
+            margin-top: 40px;
+            max-width: 600px;
+            color: white;
+            opacity: 0.5;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .container .right a {
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            margin-top: 40px;
+            opacity: 0.5;
+            border: 1px solid gray;
+            padding: 5px 12px 6px 12px;
+            border-radius: 5px;
+        }
+    }
+
+    /*# sourceMappingURL=style.css.map */
+</style>
+<body>
+
+<div class="cover-5">
+<!--    <header>-->
+<!--        <img class="logo"-->
+<!--             src="https://netrinoimages.s3.eu-west-2.amazonaws.com/2016/12/18/431639/149212/zara_logo_3d_model_c4d_max_obj_fbx_ma_lwo_3ds_3dm_stl_1703335_o.jpg"-->
+<!--             alt=""/>-->
+
+<!--        <ul class="items">-->
+<!--            <a href="login" class="item">-->
+<!--                LOG IN-->
+<!--            </a>-->
+<!--            <a href="#" class="item">-->
+<!--                HELP-->
+<!--            </a>-->
+<!--            <a href="#" class="item">-->
+<!--                🛒️-->
+<!--            </a>-->
+<!--        </ul>-->
+<!--    </header>-->
+
+    <div class="container">
+        <div class="left">
+            <img class="header-img"
+                 src="https://netrinoimages.s3.eu-west-2.amazonaws.com/2016/12/18/431639/149212/zara_logo_3d_model_c4d_max_obj_fbx_ma_lwo_3ds_3dm_stl_1703335_o.jpg"
+                 alt=""/>
+        </div>
+
+        <div class="right">
+            <h1 class="heading">
+                <span>ZARA BRAND</span><br/>
+
+            </h1>
+            <p class="sub-heading">
+                We work with monitoring programs to guarantee compliance with the health, safety, and quality standards
+                for our products.
+                The Green to Wear 2.0 standard aims to minimize the environmental impact of textile manufacturing.
+                To do this, we have developed Inditex's The List program which helps us guarantee both the purity of
+                production
+            </p>
+
+            <a class="button" href="home">Learn More</a>
+        </div>
+    </div>
+</div>
+<div class="cover-4"></div>
+<div class="cover-3"></div>
+<div class="cover-2"></div>
+<div class="cover">
+    <div class="cover-heading">
+        <h1 class="imsrk">HELLO</h1>
+        <span class="dot">.</span>
+    </div>
+</div>
+
+<div class="imsrk2">ZARA BRAND</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/gsap.min.js"></script>
+<script>
+    let t1 = gsap.timeline();
+
+    t1.from(".imsrk", {
+        opacity: 0,
+        xPercent: -100,
+        delay: 0.5,
+        duration: 1,
+        ease: "power1.out",
+        yoyo: true
+    });
+    t1.from(
+        ".dot",
+        {
+            opacity: 0,
+            yPercent: 100,
+            delay: 0.5,
+            repeatDelay: 1,
+            duration: 1,
+            ease: "power1.out"
+        },
+        0.01
+    );
+
+    t1.to(".dot", {
+        x: 20,
+        duration: 1,
+        ease: "power1.out"
+    });
+
+    t1.to(".dot", {
+        x: -10,
+        duration: 0.5,
+        ease: "power1.out"
+    });
+
+    t1.to(".imsrk", {
+        opacity: 0,
+        xPercent: -100,
+        duration: 1,
+        ease: "power1.out",
+        yoyo: true
+    });
+
+    t1.to(
+        ".dot",
+        {
+            opacity: 0,
+            duration: 1,
+            ease: "expo.out"
+        },
+        3
+    );
+
+    t1.to(
+        ".cover",
+        {
+            xPercent: -100,
+            duration: 1,
+            ease: "power1.out"
+        },
+        3
+    );
+
+    t1.to(
+        ".cover-2",
+        {
+            xPercent: -100,
+            duration: 1,
+            ease: "power1.out"
+        },
+        3.2
+    );
+
+    t1.to(
+        ".cover-3",
+        {
+            xPercent: -100,
+            duration: 1,
+            ease: "power1.out"
+        },
+        3.4
+    );
+
+    t1.to(
+        ".cover-4",
+        {
+            xPercent: -100,
+            duration: 1,
+            ease: "power1.out"
+        },
+        3.6
+    );
+
+    t1.from(
+        ".imsrk2",
+        {
+            xPercent: -100,
+            duration: 1,
+            ease: "power1.out",
+            opacity: 0
+        },
+        3.8
+    );
+
+    t1.from(".cover-5", {
+        yPercent: -100,
+        duration: 1,
+        ease: "power1.out",
+        delay: 0.4
+    });
+
+    t1.from(".logo", {
+        xPercent: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "power1.out"
+    });
+
+    t1.from(
+        ".item",
+        {
+            xPercent: 100,
+            opacity: 0,
+            duration: 1,
+            ease: "power1.out",
+            stagger: {
+                amount: 0.5,
+                from: "left"
+            }
+        },
+        6
+    );
+
+    t1.from(
+        ".header-img",
+        {
+            xPercent: -100,
+            opacity: 0,
+            duration: 1,
+            ease: "power1.out"
+        },
+        6.2
+    );
+
+    t1.from(
+        ".heading",
+        {
+            xPercent: 100,
+            opacity: 0,
+            duration: 1,
+            ease: "power1.out"
+        },
+        6.2
+    );
+
+    t1.from(
+        ".sub-heading",
+        {
+            xPercent: 100,
+            opacity: 0,
+            duration: 1.1,
+            ease: "power1.out"
+        },
+        6.2
+    );
+
+    t1.from(
+        ".button",
+        {
+            yPercent: 100,
+            opacity: 0,
+            duration: 2,
+            ease: "bounce"
+        },
+        6.5
+    );
+
+    const body = document.querySelector("body");
+    const img = document.querySelector(".header-img");
+
+    window.addEventListener("mousemove", (e) => {
+        var xPos = e.clientX / img.clientWidth - 0.5,
+            yPos = e.clientY / img.clientHeight - 0.5;
+
+        gsap.to(".header-img", 1, {
+            rotationY: xPos * 20,
+            rotationX: yPos * 20,
+            ease: Power1.easeOut
+        });
+
+        gsap.to(".heading", 1, {
+            rotationY: xPos * 20,
+            rotationX: yPos * 20,
+            ease: Power1.easeOut
+        });
+
+        gsap.to(".sub-heading", 1, {
+            rotationY: xPos * 20,
+            rotationX: yPos * 20,
+            ease: Power1.easeOut
+        });
+
+        gsap.to(".button", 1, {
+            rotationY: xPos * 20,
+            rotationX: yPos * 20,
+            ease: Power1.easeOut
+        });
+    });
+
+</script>
+</body>
+</html>
